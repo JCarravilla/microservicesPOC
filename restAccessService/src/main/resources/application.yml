@@ -1,0 +1,46 @@
+server:
+  port: ${APPLICATION_PORT}
+
+spring:
+  profiles: secure
+  application:
+    name: rest_access_service
+
+management:
+  security:
+    enabled: false
+
+timeEndpoint:
+  host: localhost
+  port: 8091
+
+childHealthServices:
+  - name: RestTime
+    host: localhost
+    port: 9998
+    healthEndpoint: health
+
+
+---
+
+server:
+  port: ${APPLICATION_PORT}
+
+spring:
+  profiles: secure
+
+management:
+  port: ${SERVICE_MANAGEMENT_PORT:9999}
+  security:
+    enabled: true
+
+timeEndpoint:
+  host: localhost
+  port: 8091
+
+security:
+  basic:
+    enabled: false
+  user:
+    name: ${SERVICE_MANAGEMENT_USER:admin}
+    password: ${SERVICE_MANAGEMENT_PASSWORD:1234}

@@ -1,0 +1,50 @@
+server:
+  port: ${APPLICATION_PORT}
+
+spring:
+  application:
+    name: rest_time_service
+  data:
+    mongodb:
+      database: test
+      host: localhost
+      port: 27018
+
+management:
+  security:
+    enabled: false
+  health:
+    mongo:
+      enabled: true
+
+---
+
+server:
+  port: ${APPLICATION_PORT}
+
+spring:
+  profiles: secure
+  data:
+    mongodb:
+      authentication-type: ${MONGODB_AUTH_TYPE:userpass}
+      authentication-database: ${MONGODB_AUTH_DB:mutuapoc}
+      database: test
+      host: localhost
+      port: 27018
+      username: ${MONGODB_USERNAME:prueba}
+      password: ${MONGODB_PASSWORD:passprueba}
+
+management:
+  port: ${SERVICE_MANAGEMENT_PORT:9998}
+  security:
+    enabled: true
+  health:
+    mongo:
+      enabled: true
+
+security:
+  basic:
+    enabled: false
+  user:
+    name: ${SERVICE_MANAGEMENT_USER:admin}
+    password: ${SERVICE_MANAGEMENT_PASSWORD:1234}
