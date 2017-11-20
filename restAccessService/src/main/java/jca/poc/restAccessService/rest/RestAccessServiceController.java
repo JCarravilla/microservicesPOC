@@ -1,7 +1,6 @@
 package jca.poc.restAccessService.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
 import jca.poc.restAccessService.service.RestAccessServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by jcarravilla on 26/10/17.
  */
-@EnableMetrics
+
 @RestController
 public class RestAccessServiceController {
     private final static Logger log = LoggerFactory.getLogger("PocMicroService");
@@ -24,7 +23,7 @@ public class RestAccessServiceController {
     @Autowired
     private RestAccessServiceImpl restAccessService;
 
-    @Timed(name="Access_to_time_service")
+    @Timed(name="time_service")
     @RequestMapping(value = {"/time"}, method = {RequestMethod.GET})
     public ResponseEntity<String> putTestValue(@RequestParam("addmillis") Long addmillis){
         log.info("Request accepted");

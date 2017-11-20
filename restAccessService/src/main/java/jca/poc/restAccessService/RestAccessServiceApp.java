@@ -1,11 +1,11 @@
 package jca.poc.restAccessService;
 
+import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"jca.poc.serviceCommons.healthChecker.**"})
+@EnableMetrics
 public class RestAccessServiceApp {
 
 	public static void main(String[] args) {

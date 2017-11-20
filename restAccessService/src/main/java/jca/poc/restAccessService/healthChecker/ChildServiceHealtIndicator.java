@@ -1,4 +1,4 @@
-package jca.poc.serviceCommons.healthChecker;
+package jca.poc.restAccessService.healthChecker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
@@ -47,10 +47,5 @@ public class ChildServiceHealtIndicator extends AbstractHealthIndicator {
 
     @Autowired
     private RestTemplate restTemplate;
-
-    @Bean
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
-    }
 
 }

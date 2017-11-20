@@ -1,5 +1,6 @@
 package jca.poc.restTimeService.rest;
 
+import com.codahale.metrics.annotation.Timed;
 import jca.poc.restTimeService.service.TimeServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ public class RestTimeController {
     @Autowired
     private TimeServiceImpl timeService;
 
+    @Timed(name = "time_method")
     @RequestMapping(value = {"/time"}, method = {RequestMethod.GET})
     public ResponseEntity<String> putTestValue(@RequestParam("millis") Long addedMillis){
         log.info("Request accepted");

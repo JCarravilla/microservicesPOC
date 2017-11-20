@@ -27,11 +27,8 @@ public class RestAccessServiceImpl implements IService<String, Long> {
         return new RestTemplate();
     }
 
-    @Autowired
-    private RestTemplate restTemplate;
-
     public String executeService(Long param) throws Exception {
-        return restTemplate.
+        return new RestTemplate().
                 getForObject(String.format("http://%s:%d/time?millis={millis}", timeEndpointHost, timeEndpointPort), String.class, param);
     }
 }
