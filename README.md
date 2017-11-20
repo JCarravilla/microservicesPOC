@@ -44,3 +44,10 @@ Microservice POC coded with Java 8 and Spring boot. Its main goals are test the 
    - Ensure the spring security is configured in management endpoints to be able to access it (see *3. Management endpoint security*)
 
   We can test it by calling to the endpoint http://localhost:9999/metrics with the user and password configured in SERVICE_MANAGEMENT_USER
+
+# 4. Transitive health status
+
+  To be able to control if a Service who is used by our main service is healthy, I've build a ChildServiceHealtIndicator that is
+  scaned in the App class as @ComponentScan(basePackages = {"jca.poc.serviceCommons.healthChecker.**"}).
+
+  We just need to inform at application.yml which services we need to control in childHealthServices.
