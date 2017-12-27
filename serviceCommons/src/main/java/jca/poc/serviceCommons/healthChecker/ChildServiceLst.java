@@ -1,4 +1,4 @@
-package jca.poc.restAccessService.healthChecker;
+package jca.poc.serviceCommons.healthChecker;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

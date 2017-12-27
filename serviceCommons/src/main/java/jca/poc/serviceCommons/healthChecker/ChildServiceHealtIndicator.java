@@ -1,4 +1,4 @@
-package jca.poc.restAccessService.healthChecker;
+package jca.poc.serviceCommons.healthChecker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
@@ -38,14 +38,16 @@ public class ChildServiceHealtIndicator extends AbstractHealthIndicator {
     }
 
     private int checkClidService(ChildServiceLst.ChildService chServ) {
-        return restTemplate.getForEntity(getUrl(chServ), String.class).getStatusCodeValue();
+        return getRestTemplate().getForEntity(getUrl(chServ), String.class).getStatusCodeValue();
     }
 
     private String getUrl(ChildServiceLst.ChildService chServ){
         return String.format("http://%s:%d/%s", chServ.getHost(), chServ.getPort(), chServ.getHealthEndpoint());
     }
 
-    @Autowired
-    private RestTemplate restTemplate;
+    @Bean(value = "healthCheckRestTemplate")
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
 
 }

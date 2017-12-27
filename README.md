@@ -45,9 +45,11 @@ Microservice POC coded with Java 8 and Spring boot. Its main goals are test the 
 
   We can test it by calling to the endpoint http://localhost:9999/metrics with the user and password configured in SERVICE_MANAGEMENT_USER
 
+  Furthermore we've can plug  with **prometheus** through the endpoint /prometheus. We've archive this with the io.prometheus dependencies as we can read in https://reflectoring.io/monitoring-spring-boot-with-prometheus/
+
 # 4. Transitive health status
 
   To be able to control if a Service who is used by our main service is healthy, I've build a ChildServiceHealtIndicator that is
-  scaned in the App class as @ComponentScan(basePackages = {"jca.poc.serviceCommons.healthChecker.**"}).
+  scanned in the App class as @ComponentScan(basePackages = {"jca.poc"}).
 
   We just need to inform at application.yml which services we need to control in childHealthServices.
