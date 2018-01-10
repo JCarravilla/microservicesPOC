@@ -14,7 +14,7 @@
 	<packaging>pom</packaging>
 
 	<name>microservicePoc</name>
-	<description>Microservice POC with mongodb connection</description>
+	<description>Spring Boot Microservice POC</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
