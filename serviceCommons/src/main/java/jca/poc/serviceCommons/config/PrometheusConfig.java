@@ -10,6 +10,7 @@ import io.prometheus.client.dropwizard.DropwizardExports;
 import io.prometheus.client.hotspot.MemoryPoolsExports;
 import io.prometheus.client.hotspot.StandardExports;
 import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
+import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +18,7 @@ import javax.annotation.PostConstruct;
 
 @Configuration
 @EnablePrometheusEndpoint
+@EnableSpringBootMetricsCollector
 public class PrometheusConfig {
     private MetricRegistry dropwizardMetricRegistry;
 
