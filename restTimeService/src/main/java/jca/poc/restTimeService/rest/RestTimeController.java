@@ -2,6 +2,7 @@ package jca.poc.restTimeService.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import jca.poc.restTimeService.service.TimeServiceImpl;
+import jca.poc.serviceCommons.metrics.RestStatusMetric;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,20 @@ public class RestTimeController {
 
     @Autowired
     private TimeServiceImpl timeService;
+    
+    @Autowired
+    private RestStatusMetric restStatusMetric;
 
     @Timed(name = "time_method")
     @RequestMapping(value = {"/time"}, method = {RequestMethod.GET})
     public ResponseEntity<String> putTestValue(@RequestParam("millis") Long addedMillis){
         log.info("Request accepted");
         try{
-            return new ResponseEntity<String>(timeService.executeService(addedMillis), HttpStatus.ACCEPTED);
+            String resp = timeService.executeService(addedMillis);
+            restStatusMetric.handleStatus(HttpStatus.ACCEPTED);
+            return new ResponseEntity<String>(resp, HttpStatus.ACCEPTED);
         } catch (Exception e) {
+            restStatusMetric.handleStatus(HttpStatus.INTERNAL_SERVER_ERROR, e);
             return new ResponseEntity<String>("0", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

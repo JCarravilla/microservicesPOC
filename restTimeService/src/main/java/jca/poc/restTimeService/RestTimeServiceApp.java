@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableMetrics
-@ComponentScan("jca.poc.serviceCommons")
+@ComponentScan("jca.poc")
 public class RestTimeServiceApp {
 
 	public static void main(String[] args) {

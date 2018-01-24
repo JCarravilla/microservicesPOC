@@ -45,6 +45,9 @@ Microservice POC coded with Java 8 and Spring boot. Its main goals are test the 
    measure to have all the information of a method
    - Ensure the spring security is configured in management endpoints to be able to access it (see *3. Management endpoint security*)
 
+  Taking advantage of the dropwizard capabilities, I've add two new metrics that counts the number of http 200 and http 500.
+  This code is in RestStatusMetric.java
+
   We can test it by calling to the endpoint http://localhost:9999/metrics with the user and password configured in SERVICE_MANAGEMENT_USER
 
   Furthermore we've can plug  with **prometheus** through the endpoint /prometheus. We've archive this with the io.prometheus
